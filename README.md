@@ -1,5 +1,11 @@
 # Data Enrichment Pipeline - Complete Implementation
 
+**Author:** Abhishek Srivastava  
+**Role:** Full Stack Developer (2.4 years experience)  
+**Purpose:** Assignment submission for ID8 Full Stack Developer
+
+---
+
 A production-ready Python system for enriching user profiles by fetching data from multiple sources in parallel, with robust error handling, intelligent caching, and advanced conflict resolution.
 
 ## 📋 Overview
