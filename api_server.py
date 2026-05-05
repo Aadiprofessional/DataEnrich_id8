@@ -17,7 +17,10 @@ from config import EnrichmentConfig
 app = FastAPI(
     title="Data Enrichment API",
     description="API for enriching user profiles from multiple data sources",
-    version="1.0.0"
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc",
+    openapi_url="/openapi.json"
 )
 
 app.add_middleware(
