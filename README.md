@@ -23,65 +23,45 @@ This project implements a mini enrichment engine that:
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### Option 1: Standalone Python Script
+
+No external dependencies - uses only Python standard library.
 
 ```bash
-Python 3.7+
-```
-
-No external dependencies! Uses only Python standard library:
-- `asyncio` - Concurrent execution
-- `dataclasses` - Type-safe data structures
-- `json` - Serialization
-- `logging` - Structured logging
-
-### Installation
-
-```bash
-# Clone or download the project
-cd DataEnrich
-
-# That's it! No pip install needed for core functionality
-```
-
-### Basic Usage
-
-```python
-import asyncio
-from enrichment_engine import EnrichmentEngine
-from models import UserInput
-
-async def main():
-    # Initialize engine
-    engine = EnrichmentEngine()
-    
-    # Create user input
-    user = UserInput(email="alice@example.com", name="Alice Smith")
-    
-    # Enrich profile
-    profile = await engine.enrich(user)
-    
-    # Print results
-    print(f"Quality Score: {profile.overall_quality_score:.2%}")
-    print(f"Complete Profile: {profile.is_complete}")
-    print(f"Processing Time: {profile.processing_time_ms:.1f}ms")
-    
-    # Access enriched data
-    print(f"Name: {profile.full_name}")
-    print(f"Company: {profile.company_name}")
-    print(f"Job Title: {profile.job_title}")
-    
-    # Get detailed JSON output
-    print(profile.to_json(indent=2))
-
-# Run
-asyncio.run(main())
-```
-
-Or run the quick demo:
-```bash
+# Run demo
 python3 demo.py
+
+# Run tests
+python3 test_engine.py
 ```
+
+### Option 2: REST API Deployment
+
+Deploy as a REST API that anyone can use.
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run API server
+python3 api_server.py
+```
+
+API will be available at `http://localhost:8000`
+
+- Swagger UI: `http://localhost:8000/docs`
+- Health check: `http://localhost:8000/health`
+
+#### API Usage
+
+```bash
+# Enrich a profile
+curl -X POST http://localhost:8000/api/v1/enrich \
+  -H "Content-Type: application/json" \
+  -d '{"email": "alice@example.com", "name": "Alice Smith"}'
+```
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment options (Docker, Vercel, Railway, Render, AWS, Heroku).
 
 ## 📁 Project Structure
 
@@ -92,11 +72,15 @@ DataEnrich/
 ├── data_sources.py              # Mock data sources (Clearbit, Hunter, Custom DB)
 ├── data_fusion.py               # Data fusion & conflict resolution logic
 ├── enrichment_engine.py         # Main orchestration engine
+├── api_server.py                # FastAPI REST API server
 ├── test_engine.py               # Comprehensive test suite (10 tests)
 ├── demo.py                      # Quick demo script
+├── Dockerfile                   # Docker configuration
+├── docker-compose.yml           # Docker Compose configuration
+├── requirements.txt             # Python dependencies
+├── DEPLOYMENT.md                # Deployment guide
 ├── ENGINEERING_DECISIONS.md     # Detailed architecture & thinking
-├── README.md                    # This file
-└── requirements.txt             # Dependencies (all stdlib)
+└── README.md                    # This file
 ```
 
 **Key Files:**
@@ -105,6 +89,7 @@ DataEnrich/
 - [`data_sources.py`](data_sources.py) - Mock API implementations
 - [`data_fusion.py`](data_fusion.py) - Conflict resolution and merging logic
 - [`enrichment_engine.py`](enrichment_engine.py) - Main orchestration engine
+- [`api_server.py`](api_server.py) - FastAPI REST API server
 - [`test_engine.py`](test_engine.py) - Comprehensive test suite
 - [`demo.py`](demo.py) - Quick demonstration script
 

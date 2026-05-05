@@ -2,7 +2,7 @@
 Main enrichment engine that orchestrates data collection and fusion.
 Handles concurrency, timeouts, retries, and caching.
 """
-
+#This is the "brain" that coordinates everything.
 import asyncio
 import time
 import hashlib
@@ -127,8 +127,17 @@ class EnrichmentEngine:
         Args:
             user_input: User input with email, phone, and/or name
         
+        Raises:
+            Exception: If any source fails
         Returns:
             EnrichedProfile with merged data from all sources
+ Main function - the entry point
+Check cache first (return if found)
+Fetch from all sources concurrently (at the same time)
+Merge results using fusion engine
+Cache the result
+Return the enriched profile
+
         """
         logger.info(f"Starting enrichment for user: {user_input}")
         start_time = time.time()
@@ -158,6 +167,7 @@ class EnrichmentEngine:
         return profile
     
     async def _fetch_all_sources(self, user_input: UserInput) -> List[SourceResult]:
+        #in parallel fetch everything
         """
         Fetch data from all sources concurrently.
         

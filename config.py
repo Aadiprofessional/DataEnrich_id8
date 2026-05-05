@@ -1,7 +1,7 @@
 """
 Configuration settings for the enrichment pipeline.
 """
-
+#settings menu kind off
 import os
 from dataclasses import dataclass
 from typing import List

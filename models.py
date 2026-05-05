@@ -1,7 +1,7 @@
 """
 Data models and types for the enrichment pipeline.
 """
-
+# shape all the data 
 from dataclasses import dataclass, field, asdict
 from typing import Optional, Dict, Any, List
 from enum import Enum
