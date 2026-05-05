@@ -76,7 +76,7 @@ DataEnrich/
 ├── test_engine.py               # Comprehensive test suite (10 tests)
 ├── demo.py                      # Quick demo script
 ├── Dockerfile                   # Docker configuration
-├── docker-compose.yml           # Docker Compose configuration
+├── docker-compose.yaml           # Docker Compose configuration
 ├── requirements.txt             # Python dependencies
 ├── DEPLOYMENT.md                # Deployment guide
 ├── ENGINEERING_DECISIONS.md     # Detailed architecture & thinking
